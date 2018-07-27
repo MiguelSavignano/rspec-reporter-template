@@ -7,6 +7,7 @@
 
 <script>
 import data from "../../data/result"
+import { sortByKey } from "../utils/utils"
 const examples = data.examples
 
 const generateTrace = (example, groups) => {
@@ -17,7 +18,7 @@ const generateTrace = (example, groups) => {
     type: "bar",
     mode: "markers",
     marker: {
-      color: "green"
+      color: example.status == "passed" ? "green" : "red"
     }
   }
 }
@@ -26,7 +27,11 @@ export default {
   mounted() {
     // const traces = getTraces(examples)
     // const points = examples.map(e => ({ x: e.group, y: e.run_time }))
-    const examples = data.examples
+    const examples = sortByKey(
+      data.examples.filter(e => e.type == "controllers"),
+      "run_time"
+    )
+    // const examples = data.examples
     const groups = [...new Set(examples.map(e => e.group))]
     const traces = examples.map(e => generateTrace(e, groups))
     var layout = { barmode: "stack" }

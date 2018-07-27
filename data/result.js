@@ -1125,7 +1125,7 @@ const data = {
           "id": "./spec/resolvers/opportunities_resolver_spec.rb[2:5]",
           "description": "diferent opportunities with diferent categories and user with multiple allowed category",
           "full_description": "OpportunitiesResolver::Index [User allowed categories] diferent opportunities with diferent categories and user with multiple allowed category",
-          "status": "passed",
+          "status": "faild",
           "file_path": "./spec/resolvers/opportunities_resolver_spec.rb",
           "line_number": 106,
           "run_time": 0.566342658,
