@@ -9,32 +9,29 @@
 import data from "../../data/result"
 const examples = data.examples
 
-const getTraceByType = (_examples, type) => {
-  const examples = _examples.filter(example => example.type == type)
+const generateTrace = (example, groups) => {
   return {
-    x: examples.map((example, index) => index),
-    y: examples.map(example => example.run_time).sort(),
-    type: "pointcloud",
+    x: groups,
+    y: groups.map(g => (g == example.group ? example.run_time : undefined)),
+    type: "bar",
     mode: "markers"
   }
 }
 
-const getTraces = examples => {
-  return [
-    getTraceByType(examples, "controllers"),
-    getTraceByType(examples, "models")
-  ]
-}
-
 export default {
   mounted() {
-    const traces = getTraces(examples)
-    Plotly.newPlot("bar-chart", getTraces(examples))
+    // const traces = getTraces(examples)
+    // const points = examples.map(e => ({ x: e.group, y: e.run_time }))
+    const examples = data.examples.filter(e => e.type == "controllers")
+    const groups = [...new Set(examples.map(e => e.group))]
+    const traces = examples.map(e => generateTrace(e, groups))
+    var layout = { barmode: "stack" }
+    Plotly.newPlot("bar-chart", traces, layout)
     console.log(traces)
   },
   data() {
     return {
-      traces: getTraces(examples),
+      traces: this.traces,
       data: examples,
       columns: [
         {
