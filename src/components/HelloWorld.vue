@@ -11,10 +11,14 @@ const examples = data.examples
 
 const generateTrace = (example, groups) => {
   return {
+    name: example.description,
     x: groups,
     y: groups.map(g => (g == example.group ? example.run_time : undefined)),
     type: "bar",
-    mode: "markers"
+    mode: "markers",
+    marker: {
+      color: "green"
+    }
   }
 }
 
@@ -22,7 +26,7 @@ export default {
   mounted() {
     // const traces = getTraces(examples)
     // const points = examples.map(e => ({ x: e.group, y: e.run_time }))
-    const examples = data.examples.filter(e => e.type == "controllers")
+    const examples = data.examples
     const groups = [...new Set(examples.map(e => e.group))]
     const traces = examples.map(e => generateTrace(e, groups))
     var layout = { barmode: "stack" }
