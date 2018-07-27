@@ -18,20 +18,21 @@ const generateTrace = (example, groups) => {
     type: "bar",
     mode: "markers",
     marker: {
-      color: example.status == "passed" ? "green" : "red"
+      color:
+        example.status == "passed"
+          ? `rgb(0, ${255 / (10 * example.run_time) + 50}, 0)`
+          : "red"
     }
   }
 }
 
 export default {
   mounted() {
-    // const traces = getTraces(examples)
-    // const points = examples.map(e => ({ x: e.group, y: e.run_time }))
-    const examples = sortByKey(
-      data.examples.filter(e => e.type == "controllers"),
-      "run_time"
-    )
-    // const examples = data.examples
+    // const examples = sortByKey(
+    //   data.examples.filter(e => e.type == "controllers"),
+    //   "run_time"
+    // )
+    const examples = sortByKey(data.examples, "run_time")
     const groups = [...new Set(examples.map(e => e.group))]
     const traces = examples.map(e => generateTrace(e, groups))
     var layout = { barmode: "stack" }
