@@ -7,6 +7,7 @@
 <script>
 import data from "../model"
 import { sortByKey } from "../utils/utils"
+import plotlyCDN from "../../lib/plotly-cdn"
 
 const generateTrace = (example, groups) => {
   return {
@@ -35,7 +36,9 @@ export default {
     const groups = [...new Set(examples.map(e => e.group))]
     const traces = examples.map(e => generateTrace(e, groups))
     var layout = { barmode: "stack" }
-    Plotly.newPlot("bar-chart", traces, layout)
+    plotlyCDN(() => {
+      Plotly.newPlot("bar-chart", traces, layout)
+    })
     this.traces = traces
     console.log(traces)
   },

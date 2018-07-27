@@ -1,10 +1,11 @@
 {
-  "name": "rspec-reporter",
+  "name": "rspecReporter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build-web": "vue-cli-service build",
+    "build-static": "vue-cli-service build --target lib --name App",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
