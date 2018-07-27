@@ -7,37 +7,35 @@
 
 <script>
 import data from "../../data/result"
-import { sortByKey } from "../utils/utils"
-console.log(data.examples)
+const examples = data.examples
 
 const getTraceByType = (_examples, type) => {
   const examples = _examples.filter(example => example.type == type)
-
   return {
-    name: type,
-    x: examples.map((example, index) => example.group),
-    y: examples.map(example => example.run_time),
-    type: "bar"
+    x: examples.map((example, index) => index),
+    y: examples.map(example => example.run_time).sort(),
+    type: "pointcloud",
+    mode: "markers"
   }
 }
 
 const getTraces = examples => {
-  const types = [...new Set(examples.map(e => e.type))]
-  return types.map(type => {
-    return getTraceByType(examples, type)
-  })
+  return [
+    getTraceByType(examples, "controllers"),
+    getTraceByType(examples, "models")
+  ]
 }
 
 export default {
   mounted() {
-    const traces = getTraces(data.examples)
-    Plotly.newPlot("bar-chart", getTraces(data.examples))
+    const traces = getTraces(examples)
+    Plotly.newPlot("bar-chart", getTraces(examples))
     console.log(traces)
   },
   data() {
     return {
-      traces: getTraces(data.examples),
-      data: data.examples,
+      traces: getTraces(examples),
+      data: examples,
       columns: [
         {
           field: "group",
