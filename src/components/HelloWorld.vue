@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="bar-chart" :traces="traces"></div>
-    <b-table :data="data" :columns="columns"></b-table>
   </div>
 </template>
 
@@ -17,6 +16,7 @@ const generateTrace = (example, groups) => {
     y: groups.map(g => (g == example.group ? example.run_time : undefined)),
     type: "bar",
     mode: "markers",
+    text: example.description,
     marker: {
       color:
         example.status == "passed"
