@@ -10,7 +10,7 @@ import { sortByKey } from "../utils/utils"
 
 const generateTrace = (example, groups) => {
   return {
-    name: example.description,
+    name: example.status,
     x: groups,
     y: groups.map(g => (g == example.group ? example.run_time : undefined)),
     type: "bar",
@@ -36,6 +36,7 @@ export default {
     const traces = examples.map(e => generateTrace(e, groups))
     var layout = { barmode: "stack" }
     Plotly.newPlot("bar-chart", traces, layout)
+    this.traces = traces
     console.log(traces)
   },
   data() {
