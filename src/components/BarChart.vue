@@ -5,9 +5,15 @@
 </template>
 
 <script>
-import data from "../model"
+import data, { distictGroups } from "../model"
 import { sortByKey } from "../utils/utils"
 import plotlyCDN from "../../lib/plotly-cdn"
+
+const markerColor = example => {
+  return example.status == "passed"
+    ? `rgb(0, ${255 / (50 * example.run_time) + 100}, 0)`
+    : "red"
+}
 
 const generateTrace = (example, groups) => {
   return {
@@ -17,12 +23,7 @@ const generateTrace = (example, groups) => {
     type: "bar",
     mode: "markers",
     text: example.description,
-    marker: {
-      color:
-        example.status == "passed"
-          ? `rgb(0, ${255 / (10 * example.run_time) + 50}, 0)`
-          : "red"
-    }
+    marker: { color: markerColor(example) }
   }
 }
 
@@ -33,8 +34,7 @@ export default {
     //   "run_time"
     // )
     const examples = sortByKey(data.examples, "run_time")
-    const groups = [...new Set(examples.map(e => e.group))]
-    const traces = examples.map(e => generateTrace(e, groups))
+    const traces = examples.map(e => generateTrace(e, distictGroups))
     var layout = { barmode: "stack" }
     plotlyCDN(() => {
       Plotly.newPlot("bar-chart", traces, layout)
