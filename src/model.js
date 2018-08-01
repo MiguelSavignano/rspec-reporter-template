@@ -15,20 +15,24 @@ Data.examples = Data.examples.map(example => {
   return example
 })
 
-const distictGroups = [...new Set(Data.examples.map(e => e.group))]
-const distictTypes = [...new Set(Data.examples.map(e => e.type))]
+export const distictGroups = [...new Set(Data.examples.map(e => e.group))]
+export const distictTypes = [...new Set(Data.examples.map(e => e.type))]
 
-const passedCount = Data.examples.filter(example => example.status == "passed")
+export const passedCount = Data.examples.filter(example => example.status == "passed")
   .length
 
-const failedCount = Data.examples.filter(example => example.status == "failed")
+export const failedCount = Data.examples.filter(example => example.status == "failed")
   .length
 
 const countByType = (type) => {
   return Data.examples.filter(example => example.type == type).length
 }
 
-const distictTypesCount = distictTypes.map(countByType)
-export default Data
+export const markerColor = example => {
+  return example.status == "passed"
+    ? `rgb(0, ${255 / (50 * example.run_time) + 100}, 0)`
+    : "red"
+}
 
-export { distictGroups, distictTypes, failedCount, passedCount, distictTypesCount }
+export const distictTypesCount = distictTypes.map(countByType)
+export default Data
