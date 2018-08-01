@@ -28,11 +28,27 @@ const countByType = (type) => {
   return Data.examples.filter(example => example.type == type).length
 }
 
+export const maxCountByType = Math.max(...distictTypes.map(countByType))
+
 export const markerColor = example => {
   return example.status == "passed"
     ? `rgb(0, ${255 / (50 * example.run_time) + 100}, 0)`
     : "red"
 }
 
+export const groupByTypeCounts = distictTypes.map((type) => {
+  const count = countByType(type)
+  return {
+    name: type,
+    y: count,
+    sliced: count == maxCountByType,
+    selected: count == maxCountByType,
+    drilldown: type,
+  }
+})
+
+
+// values: [passedCount, failedCount],
+// labels: ["Passed", "Failed"],
 export const distictTypesCount = distictTypes.map(countByType)
 export default Data

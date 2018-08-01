@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="pie-chart-success-rate">PisuccesRate</div>
+    <div id="pie-chart-success-rate"></div>
   </div>
 </template>
 
@@ -9,67 +9,63 @@ import Data, {
   passedCount,
   failedCount,
   distictTypes,
-  distictTypesCount
+  distictTypesCount,
+  groupByTypeCounts
 } from "../model"
-import plotlyCDN from "../../lib/plotly-cdn"
-
-const traces = [
-  {
-    values: [passedCount, failedCount],
-    labels: ["Passed", "Failed"],
-    domain: {
-      x: [0, 0.48]
-    },
-    hoverinfo: "label+percent",
-    hole: 0.4,
-    type: "pie"
-  },
-  {
-    values: distictTypesCount,
-    labels: distictTypes,
-    text: "CO2",
-    textposition: "inside",
-    domain: { x: [0.52, 1] },
-    name: "CO2 Emissions",
-    hoverinfo: "label+percent+name",
-    hole: 0.4,
-    type: "pie"
-  }
-]
-const layout = {
-  title: "Global Emissions 1990-2011",
-  annotations: [
-    {
-      font: {
-        size: 20
-      },
-      showarrow: false,
-      text: "Rate",
-      x: 0.17,
-      y: 0.5
-    },
-    {
-      font: {
-        size: 20
-      },
-      showarrow: false,
-      text: "Type",
-      x: 0.82,
-      y: 0.5
-    }
-  ],
-  height: 600,
-  width: 600
-}
+import Highcharts from "highcharts"
 
 export default {
   mounted() {
-    plotlyCDN(() => {
-      Plotly.newPlot("pie-chart-success-rate", traces, layout)
+    Highcharts.chart("pie-chart-success-rate", {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: "pie"
+      },
+      title: {
+        text: "Success rate"
+      },
+      tooltip: {
+        pointFormat: "{series.name}: <b>{point.y:.1f}%</b>"
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: "pointer",
+          dataLabels: {
+            enabled: true,
+            format: "{point.name}: {point.y:.1f}%",
+            style: {
+              color:
+                (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                "black"
+            }
+          }
+        }
+      },
+      series: [
+        {
+          name: "Success rate",
+          colorByPoint: true,
+          data: [
+            {
+              name: "Passed",
+              y: passedCount,
+              color: "#1aef1a"
+            },
+            {
+              name: "Failed",
+              y: failedCount,
+              color: "red"
+            }
+          ]
+        }
+      ]
     })
   },
   data() {
-    return { traces, layout }
+    return {}
   }
 }
 </script>
