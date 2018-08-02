@@ -41,13 +41,17 @@ export default {
                 (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
                 "black"
             }
-          }
+          },
+          startAngle: -90,
+          endAngle: 90,
+          center: ["50%", "75%"]
         }
       },
       series: [
         {
           name: "Success rate",
           colorByPoint: true,
+          innerSize: "50%",
           data: [
             {
               name: "Passed",
