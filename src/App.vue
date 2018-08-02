@@ -2,9 +2,9 @@
   <div id="app">
     <NavBar />
     <div class="section-1">
+      <ResultSummary />
       <PieChartSuccesRate />
       <PieChartTypes />
-      <ResultSummary />
     </div>
     <hr />
     <BarChart />
@@ -33,6 +33,7 @@ export default {
 <style>
 .section-1 {
   display: flex;
+  height: 250px;
 }
 .section-1 > * {
   width: 33%;

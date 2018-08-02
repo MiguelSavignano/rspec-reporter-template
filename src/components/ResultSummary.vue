@@ -1,5 +1,5 @@
 <template>
-  <div :summary="summary" :summary_line="summary_line" >
+  <div  class="summary-container" :summary="summary" :summary_line="summary_line" >
     <h1>Result summary</h1>
     <h3>{{summary_line}}</h3>
     <br>
@@ -23,10 +23,15 @@ export default {
 }
 </script>
 <style>
+.summary-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .summary-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 24%;
 }
 </style>
