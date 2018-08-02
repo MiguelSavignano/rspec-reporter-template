@@ -5,14 +5,7 @@
 </template>
 
 <script>
-import Data, {
-  passedCount,
-  failedCount,
-  distictTypes,
-  totalCount,
-  distictTypesCount,
-  groupByTypeCounts
-} from "../model"
+import { passedCount, failedCount, totalCount } from "../model"
 import Highcharts from "highcharts"
 
 export default {

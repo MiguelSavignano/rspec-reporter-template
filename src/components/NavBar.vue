@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import data from "../model"
-
 export default {
   data() {
     return {}
