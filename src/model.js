@@ -58,7 +58,9 @@ export const groupByTypeCounts = distictTypes.map((type) => {
   const count = countByType(type)
   return {
     name: type,
+    name2: "Total",
     y: count,
+    x: (count / totalCount) * 100,
     sliced: count == maxCountByType,
     selected: count == maxCountByType,
     drilldown: type,

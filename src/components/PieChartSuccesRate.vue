@@ -29,7 +29,7 @@ export default {
         text: ""
       },
       tooltip: {
-        pointFormat: "{series.name}: <b>{point.y:.1f}</b>"
+        pointFormat: "{point.name2}: <b>{point.y:.1f}</b>"
       },
       plotOptions: {
         pie: {
@@ -57,12 +57,14 @@ export default {
           data: [
             {
               name: "Passed",
+              name2: "Total",
               y: passedCount,
               x: passedCount / totalCount * 100,
               color: "#1aef1a"
             },
             {
               name: "Failed",
+              name2: "Total",
               y: failedCount,
               x: failedCount / totalCount * 100,
               color: "red"
