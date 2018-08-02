@@ -9,6 +9,7 @@ import Data, {
   passedCount,
   failedCount,
   distictTypes,
+  totalCount,
   distictTypesCount,
   groupByTypeCounts
 } from "../model"
@@ -28,7 +29,7 @@ export default {
         text: ""
       },
       tooltip: {
-        pointFormat: "{series.name}: <b>{point.y:.1f}%</b>"
+        pointFormat: "{series.name}: <b>{point.y:.1f}</b>"
       },
       plotOptions: {
         pie: {
@@ -36,7 +37,7 @@ export default {
           cursor: "pointer",
           dataLabels: {
             enabled: true,
-            format: "{point.name}: {point.y:.1f}%",
+            format: "{point.name}: {point.x:.1f}%",
             style: {
               color:
                 (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
@@ -57,11 +58,13 @@ export default {
             {
               name: "Passed",
               y: passedCount,
+              x: passedCount / totalCount * 100,
               color: "#1aef1a"
             },
             {
               name: "Failed",
               y: failedCount,
+              x: failedCount / totalCount * 100,
               color: "red"
             }
           ]
@@ -70,7 +73,7 @@ export default {
     })
   },
   data() {
-    return {}
+    return { passedCount, failedCount, totalCount }
   }
 }
 </script>

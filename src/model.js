@@ -17,7 +17,10 @@ Data.examples = Data.examples.map(example => {
 })
 
 export const distictGroups = [...new Set(Data.examples.map(e => e.group))]
+
 export const distictTypes = [...new Set(Data.examples.map(e => e.type))]
+
+export const totalCount = Data.examples.length
 
 export const passedCount = Data.examples.filter(example => example.status == "passed")
   .length
