@@ -20,6 +20,7 @@ export default {
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
+        height: "250px",
         plotShadow: false,
         type: "pie"
       },

@@ -21,6 +21,7 @@ export default {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
+        height: "250px",
         type: "pie"
       },
       title: {

@@ -35,6 +35,9 @@ export default {
   display: flex;
   height: 250px;
 }
+.result-summary-container {
+  padding: 1.5rem;
+}
 .section-1 > * {
   width: 33%;
 }
