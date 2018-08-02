@@ -1,4 +1,5 @@
 import Data from "../data/result.json"
+import { titleCase } from "./utils/utils"
 
 const getSpecType = file_path => {
     const data = file_path.split("/")
@@ -10,8 +11,8 @@ const getGroup = ({ full_description }) =>
   full_description.split(" ")[0]
 
 Data.examples = Data.examples.map(example => {
-  example.type = getSpecType(example["file_path"])
-  example.group = getGroup(example)
+  example.type = titleCase(getSpecType(example["file_path"]))
+  example.group = titleCase(`${example.type}:${getGroup(example)}`)
   return example
 })
 

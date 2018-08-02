@@ -11,3 +11,7 @@ export const sortByKey = (items, key = "run_time") => {
     return 0
   })
 }
+
+export const titleCase = (str) => {
+  return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase())
+}
