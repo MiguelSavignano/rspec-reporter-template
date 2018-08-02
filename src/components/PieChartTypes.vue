@@ -24,7 +24,7 @@ export default {
         type: "pie"
       },
       title: {
-        text: "Test by type"
+        text: ""
       },
       tooltip: {
         pointFormat: "{point.name}: <b>{point.y:.1f}%</b>"

@@ -24,7 +24,7 @@ export default {
         type: "pie"
       },
       title: {
-        text: "Success rate"
+        text: ""
       },
       tooltip: {
         pointFormat: "{series.name}: <b>{point.y:.1f}%</b>"

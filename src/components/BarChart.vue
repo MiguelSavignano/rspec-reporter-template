@@ -25,7 +25,7 @@ export default {
         type: "bar"
       },
       title: {
-        text: "Stacked bar chart"
+        text: ""
       },
       xAxis: {
         categories: distictGroups
@@ -33,7 +33,7 @@ export default {
       yAxis: {
         min: 0,
         title: {
-          text: "Total fruit consumption"
+          text: ""
         }
       },
       legend: {
