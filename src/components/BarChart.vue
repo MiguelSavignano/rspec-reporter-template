@@ -5,28 +5,10 @@
 </template>
 
 <script>
-import data, { distictGroups } from "../model"
+import data, { distictGroups, markerColor } from "../model"
 import { sortByKey } from "../utils/utils"
 import plotlyCDN from "../../lib/plotly-cdn"
 import Highcharts from "highcharts"
-
-const markerColor = example => {
-  return example.status == "passed"
-    ? `rgb(0, ${255 / (50 * example.run_time) + 100}, 0)`
-    : "red"
-}
-
-const generateTrace = (example, groups) => {
-  return {
-    name: example.status,
-    x: groups,
-    y: groups.map(g => (g == example.group ? example.run_time : undefined)),
-    type: "bar",
-    mode: "markers",
-    text: example.description,
-    marker: { color: markerColor(example) }
-  }
-}
 
 export default {
   mounted() {
@@ -66,7 +48,8 @@ export default {
         name: example.description,
         data: distictGroups.map(
           g => (g == example.group ? example.run_time : 0)
-        )
+        ),
+        color: markerColor(example)
       }))
     })
   },

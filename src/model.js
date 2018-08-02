@@ -29,11 +29,25 @@ const countByType = (type) => {
   return Data.examples.filter(example => example.type == type).length
 }
 
+const runtimes = Data.examples.map(example => example.run_time)
+
+export const minRuntime = Math.min(...runtimes)
+
+// export const averageRuntime = (() => {
+//   const sum = runtimes.reduce(function(a, b) { return a + b; })
+//   const avg = sum / runtimes.length
+//   return avg
+// })()
+
+// console.log(averageRuntime)
+
 export const maxCountByType = Math.max(...distictTypes.map(countByType))
 
 export const markerColor = example => {
+  const colorPercent = (100 / (example.run_time / minRuntime))
+  const  color = ((colorPercent * 255) / 100) + 130
   return example.status == "passed"
-    ? `rgb(0, ${255 / (50 * example.run_time) + 100}, 0)`
+    ? `rgb(0, ${Math.round(color)}, 0)`
     : "red"
 }
 
