@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="bar-chart" :traces="traces"></div>
+    <div id="bar-chart"></div>
   </div>
 </template>
 
@@ -16,7 +16,14 @@ export default {
     //   data.examples.filter(e => e.type == "controllers"),
     //   "run_time"
     // )
+
     const examples = sortByKey(data.examples, "run_time")
+
+    this.series = examples.map(example => ({
+      name: example.description,
+      data: distictGroups.map(g => (g == example.group ? example.run_time : 0)),
+      color: markerColor(example)
+    }))
     // const traces = examples.map(e => generateTrace(e, distictGroups))
     // var layout = { barmode: "stack" }
     console.log(distictGroups)
@@ -44,18 +51,12 @@ export default {
           stacking: "normal"
         }
       },
-      series: examples.map(example => ({
-        name: example.description,
-        data: distictGroups.map(
-          g => (g == example.group ? example.run_time : 0)
-        ),
-        color: markerColor(example)
-      }))
+      series: this.series
     })
   },
   data() {
     return {
-      traces: this.traces
+      series: this.series
     }
   }
 }

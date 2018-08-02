@@ -36,18 +36,18 @@ const runtimes = Data.examples.map(example => example.run_time)
 
 export const minRuntime = Math.min(...runtimes)
 
-// export const averageRuntime = (() => {
-//   const sum = runtimes.reduce(function(a, b) { return a + b; })
-//   const avg = sum / runtimes.length
-//   return avg
-// })()
+export const averageRuntime = (() => {
+  const sum = runtimes.reduce(function(a, b) { return a + b; })
+  const avg = sum / runtimes.length
+  return avg
+})()
 
 // console.log(averageRuntime)
 
 export const maxCountByType = Math.max(...distictTypes.map(countByType))
 
 export const markerColor = example => {
-  const colorPercent = (100 / (example.run_time / minRuntime))
+  const colorPercent = (100 / (example.run_time / (averageRuntime / 2)))
   const  color = ((colorPercent * 255) / 100) + 130
   return example.status == "passed"
     ? `rgb(0, ${Math.round(color)}, 0)`
