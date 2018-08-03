@@ -15,7 +15,7 @@
   <div class="card">
   <header class="card-header">
     <p class="card-header-title">
-      Rspec Result
+      Results
     </p>
   </header>
   <div class="card-content">

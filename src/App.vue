@@ -3,7 +3,7 @@
     <NavBar />
     <div class="section-1">
       <ResultSummary />
-      <PieChartSuccesRate />
+      <PieChartSuccessRate />
       <PieChartTypes />
     </div>
     <hr />
@@ -13,7 +13,7 @@
 
 <script>
 import NavBar from "./components/NavBar.vue"
-import PieChartSuccesRate from "./components/PieChartSuccesRate.vue"
+import PieChartSuccessRate from "./components/PieChartSuccessRate.vue"
 import PieChartTypes from "./components/PieChartTypes.vue"
 import ResultSummary from "./components/ResultSummary.vue"
 import BarChart from "./components/BarChart.vue"
@@ -22,7 +22,7 @@ export default {
   name: "app",
   components: {
     NavBar,
-    PieChartSuccesRate,
+    PieChartSuccessRate,
     PieChartTypes,
     ResultSummary,
     BarChart
