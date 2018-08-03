@@ -1,5 +1,5 @@
 {
-  "name": "Rspec reporter",
+  "name": "rspec-reporter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
