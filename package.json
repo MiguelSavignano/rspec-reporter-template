@@ -6,9 +6,11 @@
     "start": "vue-cli-service serve",
     "build-web": "vue-cli-service build",
     "build-static": "vue-cli-service build --target lib --name App",
+    "build-static-html-app": "vue-cli-service build --target lib --name App && node build-html-app.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ejs": "^2.6.1",
     "highcharts": "^6.1.1",
     "vue": "^2.5.16"
   },
