@@ -1,5 +1,5 @@
 import { titleCase } from "./utils/utils"
-
+// import Data from "../data/result.json"
 var Data = JSON.parse(document.getElementById('result-json').innerHTML)
 
 const getSpecType = file_path => {
@@ -14,6 +14,7 @@ const getGroup = ({ full_description }) =>
 Data.examples = Data.examples.map(example => {
   example.type = titleCase(getSpecType(example["file_path"]))
   example.group = titleCase(`${example.type}:${getGroup(example)}`)
+  example.run_time = example.run_time || 0.5
   return example
 })
 
