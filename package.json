@@ -5,8 +5,8 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build-web": "vue-cli-service build",
-    "build-static": "vue-cli-service build --target lib --name App",
-    "build-static-html-app": "vue-cli-service build --target lib --name App && node build-html-app.js",
+    "build": "vue-cli-service build --target lib --name App",
+    "build-app": "node build-html-app.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

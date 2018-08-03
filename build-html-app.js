@@ -1,6 +1,8 @@
 const ejs = require("ejs")
-var fs = require('fs');
+// const escapeXML = require("ejs/lib/utils").escapeXML
+var fs = require('fs')
 
+const resultJSONPath = "./data/result.json"
 const appJsFilePath = "./dist/App.umd.min.js"
 const appCssFilePath = "./dist/App.css"
 const fileTemplatePath = "index.html.ejs"
@@ -9,9 +11,10 @@ const outputFileTemplatePath = "index.html"
 const noEscape = (string) => string
 
 new Promise((resolve, reject) => {
+  var RESULT_JSON = fs.readFileSync(resultJSONPath, 'utf8')
   var APP_JS = fs.readFileSync(appJsFilePath, 'utf8')
   var APP_CSS = fs.readFileSync(appCssFilePath, 'utf8')
-  ejs.renderFile(fileTemplatePath, {APP_JS, APP_CSS}, {escape: noEscape}, function(err, str){
+  ejs.renderFile(fileTemplatePath, {APP_JS, APP_CSS, RESULT_JSON}, {escape: noEscape}, function(err, str){
     if(err) {
       console.error(err)
       reject(err)
