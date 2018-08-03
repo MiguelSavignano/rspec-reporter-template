@@ -6,7 +6,7 @@ const resultJSONPath = "./data/result.json"
 const appJsFilePath = "./dist/App.umd.min.js"
 const appCssFilePath = "./dist/App.css"
 const fileTemplatePath = "index.html.ejs"
-const outputFileTemplatePath = "index.html"
+const outputFileTemplatePath = "rspec_report/index.html"
 
 const noEscape = (string) => string
 
