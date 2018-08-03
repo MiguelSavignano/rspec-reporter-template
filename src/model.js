@@ -1,11 +1,12 @@
-import Data from "../data/result.json"
 import { titleCase } from "./utils/utils"
 
+var Data = JSON.parse(document.getElementById('result-json').innerHTML)
+
 const getSpecType = file_path => {
-    const data = file_path.split("/")
-    const name = data[2] || ""
-    return `${name}`
-  }
+  const data = file_path.split("/")
+  const name = data[2] || ""
+  return `${name}`
+}
 
 const getGroup = ({ full_description }) =>
   full_description.split(" ")[0]

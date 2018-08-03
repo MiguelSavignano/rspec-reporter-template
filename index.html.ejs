@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <title>Rspec reporter</title>
     <script src="https://unpkg.com/vue"></script>
-    <script>
-      <%= APP_JS %>
-    </script>
     <style>
       <%= APP_CSS %>
     </style>
@@ -19,6 +16,10 @@
     <div id="app">
       <demo></demo>
     </div>
+    <script id="result-json" type="application/json"><%= RESULT_JSON %></script>
+    <script>
+      <%= APP_JS %>
+    </script>
     <script>
     new Vue({
       components: {
